@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProductCard from './ProductCard';
+import ParticleBackground from './ParticleBackground';
 
 const products = [
   // Gaming
@@ -63,6 +64,9 @@ function App() {
   return (
     <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-dark-bg text-gray-100">
       
+      {/* Interactive Physics Canvas */}
+      <ParticleBackground />
+
       {/* Dynamic Aurora Background Elements */}
       <div className="absolute top-[-20%] left-[-10%] w-[50rem] h-[50rem] bg-indigo-500/20 rounded-full mix-blend-screen filter blur-[120px] opacity-40 animate-float" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40rem] h-[40rem] bg-teal-500/20 rounded-full mix-blend-screen filter blur-[100px] opacity-40 animate-float" style={{ animationDelay: '3s', animationDuration: '10s' }} />
@@ -105,15 +109,16 @@ function App() {
             />
           </div>
 
-          <div className="flex w-full xl:w-auto overflow-x-auto gap-3 pb-2 xl:pb-0 hide-scrollbar justify-start xl:justify-end">
+          {/* Updated this container to be horizontally scrollable always on mobile */}
+          <div className="flex w-full xl:w-auto overflow-x-auto gap-3 pb-4 xl:pb-0 px-2 scroll-smooth justify-start xl:justify-end items-center" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`flex-shrink-0 px-6 py-3 rounded-2xl text-sm font-bold tracking-wide transition-all duration-300 transform active:scale-95 border ${
+                className={`flex-shrink-0 px-6 py-3 rounded-full text-sm font-bold tracking-wide transition-all duration-300 transform active:scale-95 border whitespace-nowrap ${
                   selectedCategory === category
-                    ? "bg-indigo-600/20 text-indigo-300 border-indigo-500 shadow-[0_0_15px_rgba(99,102,241,0.3)] glow"
-                    : "bg-transparent text-gray-400 border-white/5 hover:bg-white/5 hover:text-white"
+                    ? "bg-indigo-600/20 text-indigo-300 border-indigo-500 shadow-[0_0_15px_rgba(99,102,241,0.3)]"
+                    : "bg-black/20 text-gray-400 border-white/5 hover:bg-white/5 hover:text-white"
                 }`}
               >
                 {category}
