@@ -2,14 +2,21 @@ import React, { useState } from 'react';
 import ProductCard from './ProductCard';
 
 const products = [
-  { id: 1, name: "Laptop", category: "Electronics", price: 60000 },
-  { id: 2, name: "Headphones", category: "Electronics", price: 2000 },
-  { id: 3, name: "T-shirt", category: "Clothing", price: 800 },
-  { id: 4, name: "Shoes", category: "Clothing", price: 2500 },
-  { id: 5, name: "Coffee Mug", category: "Home", price: 300 }
+  { id: 1, name: "Quantum Chronometer", category: "Relics", price: 250000 },
+  { id: 2, name: "Neural Link Interface", category: "Cybernetics", price: 850000 },
+  { id: 3, name: "Levitating Bonsai", category: "Oddities", price: 15000 },
+  { id: 4, name: "Holographic Trench Coat", category: "Apparel", price: 45000 },
+  { id: 5, name: "Void-Forged Dagger", category: "Relics", price: 120000 },
+  { id: 6, name: "Bionic Optic Sensor", category: "Cybernetics", price: 320000 },
+  { id: 7, name: "Crystallized Starlight", category: "Oddities", price: 500000 },
+  { id: 8, name: "Phase-Shift Sneakers", category: "Apparel", price: 28000 },
+  { id: 9, name: "Memory Engram Storage", category: "Cybernetics", price: 95000 },
+  { id: 10, name: "Aether Compass", category: "Relics", price: 75000 },
+  { id: 11, name: "Gravity Disruptor", category: "Oddities", price: 210000 },
+  { id: 12, name: "Thermoptic Suit", category: "Apparel", price: 650000 }
 ];
 
-const categories = ["All", "Electronics", "Clothing", "Home"];
+const categories = ["All", "Relics", "Cybernetics", "Oddities", "Apparel"];
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,54 +29,63 @@ function App() {
   });
 
   return (
-    <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-dark-bg text-gray-100">
       
-      {/* Decorative background shapes for creativity */}
-      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-float" />
-      <div className="absolute top-[20%] right-[-5%] w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-float" style={{ animationDelay: '2s' }} />
+      {/* Dynamic Aurora Background Elements */}
+      <div className="absolute top-[-20%] left-[-10%] w-[50rem] h-[50rem] bg-aurora-indigo/20 rounded-full mix-blend-screen filter blur-[120px] opacity-60 animate-float" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40rem] h-[40rem] bg-aurora-teal/20 rounded-full mix-blend-screen filter blur-[100px] opacity-60 animate-float" style={{ animationDelay: '3s', animationDuration: '10s' }} />
+      <div className="absolute top-[40%] left-[60%] w-[30rem] h-[30rem] bg-aurora-blue/10 rounded-full mix-blend-screen filter blur-[80px] opacity-50 animate-pulse-slow" />
 
-      <div className="max-w-5xl mx-auto space-y-12 relative z-10 animate-fade-in">
+      <div className="max-w-7xl mx-auto space-y-16 relative z-10 animate-fade-in">
         
         {/* Header section */}
-        <div className="text-center space-y-4">
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl">
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500">
-              Discover
+        <div className="text-center space-y-6">
+          <div className="inline-block animate-glow px-4 py-1 rounded-full border border-aurora-teal/30 bg-aurora-teal/10 text-aurora-teal text-xs font-bold tracking-widest uppercase mb-4 shadow-[0_0_15px_rgba(45,212,191,0.2)]">
+            Aesthetic Collection v2.0
+          </div>
+          <h1 className="text-6xl md:text-8xl font-black tracking-tighter">
+            <span className="block text-white">
+              The Emporium
             </span>
-            <span className="block text-gray-900 mt-1">Exceptional Goods</span>
+            <span className="block text-gradient mt-2 pb-2">
+              of Curiosities
+            </span>
           </h1>
-          <p className="max-w-xl mx-auto text-xl text-gray-500 font-medium">
-            Find exactly what you're looking for with our beautifully designed catalog.
+          <p className="max-w-2xl mx-auto text-xl text-gray-400 font-light tracking-wide">
+            Acquire unique artifacts, advanced cybernetics, and rare apparel from across the galaxy.
           </p>
         </div>
 
-        {/* Filters section - Glassmorphism style */}
-        <div className="glass rounded-3xl p-4 sm:p-6 flex flex-col md:flex-row gap-6 items-center justify-between animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+        {/* Filters section - Dark Glassmorphism style */}
+        <div className="glass-dark rounded-[2rem] p-6 lg:p-8 flex flex-col xl:flex-row gap-8 items-center justify-between animate-fade-in-up shadow-[0_10px_40px_rgba(0,0,0,0.5)] border border-white/5 relative overflow-hidden">
           
-          <div className="w-full md:w-1/2 relative group">
-            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-              <svg className="h-5 w-5 text-gray-400 group-focus-within:text-purple-500 transition-colors duration-300" viewBox="0 0 20 20" fill="currentColor">
+          {/* Subtle inner top glow */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+          <div className="w-full xl:w-1/2 relative group">
+            <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
+              <svg className="h-6 w-6 text-gray-500 group-focus-within:text-aurora-teal transition-colors duration-500" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
               </svg>
             </div>
             <input
               type="text"
-              placeholder="Search products by name..."
+              placeholder="Search the archive..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-12 block w-full rounded-2xl border-transparent bg-white/50 py-4 text-gray-900 focus:bg-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 shadow-sm outline-none placeholder-gray-400 font-medium"
+              className="pl-16 block w-full rounded-2xl border border-white/10 bg-black/40 py-5 text-gray-100 focus:bg-black/60 focus:ring-2 focus:ring-aurora-teal focus:border-transparent transition-all duration-500 shadow-inner outline-none placeholder-gray-500 font-medium text-lg"
             />
           </div>
 
-          <div className="flex w-full md:w-auto overflow-x-auto gap-3 pb-2 md:pb-0 hide-scrollbar justify-start md:justify-end">
+          <div className="flex w-full xl:w-auto overflow-x-auto gap-4 pb-2 xl:pb-0 hide-scrollbar justify-start xl:justify-end">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`flex-shrink-0 px-6 py-3 rounded-2xl text-sm font-bold transition-all duration-300 transform active:scale-95 ${
+                className={`flex-shrink-0 px-8 py-4 rounded-2xl text-sm font-bold tracking-wider uppercase transition-all duration-500 transform active:scale-95 border ${
                   selectedCategory === category
-                    ? "bg-gradient-to-r from-purple-600 to-pink-500 text-white shadow-lg shadow-purple-500/30"
-                    : "bg-white/60 text-gray-600 hover:bg-white hover:text-gray-900 hover:shadow-md border border-white/40"
+                    ? "bg-white/10 text-white border-aurora-teal shadow-[0_0_20px_rgba(45,212,191,0.3)] glow"
+                    : "bg-transparent text-gray-400 border-white/5 hover:bg-white/5 hover:text-white hover:border-white/20"
                 }`}
               >
                 {category}
@@ -79,9 +95,9 @@ function App() {
         </div>
 
         {/* Products Grid */}
-        <div className="mt-8">
+        <div className="mt-12">
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 perspective-1000">
               {filteredProducts.map((product, index) => (
                 <ProductCard 
                   key={product.id} 
@@ -91,19 +107,19 @@ function App() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-24 glass rounded-3xl animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-purple-100 mb-6 animate-pulse">
-                <svg className="h-10 w-10 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <div className="text-center py-32 glass-dark rounded-[3rem] animate-fade-in-up border border-white/5" style={{ animationDelay: '0.2s' }}>
+              <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-black border border-white/10 mb-8 animate-pulse-slow shadow-[0_0_30px_rgba(0,0,0,0.8)_inset]">
+                <svg className="h-10 w-10 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
-              <p className="text-lg text-gray-500 max-w-sm mx-auto">We couldn't find anything matching your search. Try adjusting your filters.</p>
+              <h3 className="text-3xl font-black text-white mb-4 tracking-tight">No artifacts found</h3>
+              <p className="text-xl text-gray-500 max-w-md mx-auto font-light">The archive doesn't contain what you're looking for. Try a different query.</p>
               <button 
                 onClick={() => { setSearchQuery(""); setSelectedCategory("All"); }}
-                className="mt-8 inline-flex items-center px-6 py-3 border border-transparent text-base font-bold rounded-xl text-purple-700 bg-purple-100 hover:bg-purple-200 hover:scale-105 transition-all duration-300"
+                className="mt-10 inline-flex items-center px-8 py-4 border border-aurora-teal/30 text-sm tracking-widest uppercase font-bold rounded-xl text-aurora-teal bg-aurora-teal/5 hover:bg-aurora-teal/10 hover:border-aurora-teal hover:shadow-[0_0_20px_rgba(45,212,191,0.4)] transition-all duration-500"
                >
-                Clear all filters
+                Reset Scanners
               </button>
             </div>
           )}
