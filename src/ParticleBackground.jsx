@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 
-const ParticleBackground = () => {
+const ParticleBackground = ({ isDarkMode }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -152,11 +152,12 @@ const ParticleBackground = () => {
 
     const init = () => {
       particles = [];
-      // Slightly reduce density based on user feedback (divisor from 2500 -> 4000)
-      const numberOfParticles = (canvas.width * canvas.height) / 4000; 
+      // Reduced density again based on user feedback (divisor from 4000 -> 7500)
+      const numberOfParticles = (canvas.width * canvas.height) / 7500; 
       
-      // More varied and opaque colors for better visibility of thin strokes
-      const bubbleColors = ['rgba(99, 102, 241, 0.6)', 'rgba(45, 212, 191, 0.6)', 'rgba(59, 130, 246, 0.6)', 'rgba(168, 85, 247, 0.5)'];
+      const bounceColors = isDarkMode
+          ? ['rgba(99, 102, 241, 0.6)', 'rgba(45, 212, 191, 0.6)', 'rgba(59, 130, 246, 0.6)', 'rgba(168, 85, 247, 0.5)']
+          : ['rgba(99, 102, 241, 0.35)', 'rgba(45, 212, 191, 0.4)', 'rgba(59, 130, 246, 0.35)', 'rgba(168, 85, 247, 0.3)'];
       
       for (let i = 0; i < numberOfParticles; i++) {
         // Larger sizes for bubbles
@@ -167,7 +168,7 @@ const ParticleBackground = () => {
         
         let x = (Math.random() * canvas.width);
         let y = (Math.random() * canvas.height);
-        let color = bubbleColors[Math.floor(Math.random() * bubbleColors.length)];
+        let color = bounceColors[Math.floor(Math.random() * bounceColors.length)];
         particles.push(new Particle(x, y, size, color));
       }
     };
@@ -190,7 +191,7 @@ const ParticleBackground = () => {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [isDarkMode]);
 
   return (
     <canvas 

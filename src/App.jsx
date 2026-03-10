@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 import ParticleBackground from './ParticleBackground';
 
@@ -54,6 +54,16 @@ const categories = ["All", "Gaming", "Audio", "Workspace", "Photography", "Smart
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  // Sync theme to HTML element for Tailwind's class-based dark mode
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
 
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
@@ -62,37 +72,52 @@ function App() {
   });
 
   return (
-    <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-dark-bg text-gray-100">
+    <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-gray-50 dark:bg-dark-bg text-gray-900 dark:text-gray-100 transition-colors duration-500">
       
+      {/* Theme Toggle */}
+      <div className="absolute top-6 right-6 z-50">
+        <button 
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          className="p-3 rounded-full bg-white/50 dark:bg-black/40 backdrop-blur-md border border-gray-200 dark:border-white/10 text-gray-800 dark:text-gray-200 hover:scale-110 transition-transform shadow-lg"
+          aria-label="Toggle Dark Mode"
+        >
+          {isDarkMode ? (
+            <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" /></svg>
+          ) : (
+            <svg className="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+          )}
+        </button>
+      </div>
+
       {/* Interactive Physics Canvas */}
-      <ParticleBackground />
+      <ParticleBackground isDarkMode={isDarkMode} />
 
       {/* Dynamic Aurora Background Elements */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50rem] h-[50rem] bg-indigo-500/20 rounded-full mix-blend-screen filter blur-[120px] opacity-40 animate-float" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40rem] h-[40rem] bg-teal-500/20 rounded-full mix-blend-screen filter blur-[100px] opacity-40 animate-float" style={{ animationDelay: '3s', animationDuration: '10s' }} />
+      <div className="absolute top-[-20%] left-[-10%] w-[50rem] h-[50rem] bg-indigo-500/10 dark:bg-indigo-500/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] opacity-40 animate-float" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40rem] h-[40rem] bg-teal-500/10 dark:bg-teal-500/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[100px] opacity-40 animate-float" style={{ animationDelay: '3s', animationDuration: '10s' }} />
 
       <div className="max-w-7xl mx-auto space-y-12 relative z-10 animate-fade-in">
         
         {/* Header section */}
         <div className="text-center space-y-4">
-          <div className="inline-block animate-glow px-4 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-xs font-bold tracking-widest uppercase mb-2 shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+          <div className="inline-block animate-glow px-4 py-1.5 rounded-full border border-indigo-500/20 dark:border-indigo-500/30 bg-indigo-500/5 dark:bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 text-xs font-bold tracking-widest uppercase mb-2 shadow-[0_0_15px_rgba(99,102,241,0.1)] dark:shadow-[0_0_15px_rgba(99,102,241,0.2)]">
             Explore 35+ Items
           </div>
           <h1 className="text-6xl md:text-7xl font-black tracking-tight">
-            <span className="block text-white">
+            <span className="block text-gray-900 dark:text-white transition-colors duration-500">
               The Gear
             </span>
             <span className="block text-gradient mt-1 pb-2">
               Collective
             </span>
           </h1>
-          <p className="max-w-xl mx-auto text-lg text-gray-400 font-medium">
+          <p className="max-w-xl mx-auto text-lg text-gray-600 dark:text-gray-400 font-medium transition-colors duration-500">
             Discover the best tech, gaming peripherals, and smart home modules.
           </p>
         </div>
 
-        {/* Filters section - Dark Glassmorphism style */}
-        <div className="glass-dark rounded-3xl p-6 flex flex-col xl:flex-row gap-6 items-center justify-between animate-fade-in-up border border-white/10 shadow-2xl">
+        {/* Filters section - Glassmorphism style */}
+        <div className="glass-dark rounded-3xl p-6 flex flex-col xl:flex-row gap-6 items-center justify-between animate-fade-in-up border transition-all duration-500">
           
           <div className="w-full xl:w-1/2 relative group">
             <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
@@ -105,7 +130,7 @@ function App() {
               placeholder="Search equipment..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-16 block w-full rounded-2xl border border-white/10 bg-black/40 py-4 text-gray-100 focus:bg-white/5 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-300 shadow-inner outline-none placeholder-gray-500 font-medium text-lg"
+              className="pl-16 block w-full rounded-2xl border border-gray-300 dark:border-white/10 bg-white/80 dark:bg-black/40 py-4 text-gray-900 dark:text-gray-100 focus:bg-white dark:focus:bg-white/5 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-300 shadow-inner outline-none placeholder-gray-400 dark:placeholder-gray-500 font-medium text-lg"
             />
           </div>
 
@@ -117,8 +142,8 @@ function App() {
                 onClick={() => setSelectedCategory(category)}
                 className={`flex-shrink-0 px-6 py-3 rounded-full text-sm font-bold tracking-wide transition-all duration-300 transform active:scale-95 border whitespace-nowrap ${
                   selectedCategory === category
-                    ? "bg-indigo-600/20 text-indigo-300 border-indigo-500 shadow-[0_0_15px_rgba(99,102,241,0.3)]"
-                    : "bg-black/20 text-gray-400 border-white/5 hover:bg-white/5 hover:text-white"
+                    ? "bg-indigo-100 dark:bg-indigo-600/20 text-indigo-700 dark:text-indigo-300 border-indigo-400 dark:border-indigo-500 shadow-[0_0_15px_rgba(99,102,241,0.2)] dark:shadow-[0_0_15px_rgba(99,102,241,0.3)]"
+                    : "bg-white/60 dark:bg-black/20 text-gray-600 dark:text-gray-400 border-gray-300 dark:border-white/5 hover:bg-white dark:hover:bg-white/5 hover:text-indigo-600 dark:hover:text-white"
                 }`}
               >
                 {category}
@@ -140,17 +165,17 @@ function App() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-24 glass-dark rounded-3xl animate-fade-in-up border border-white/5" style={{ animationDelay: '0.2s' }}>
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-black/50 border border-white/10 mb-6 animate-pulse-slow">
-                <svg className="h-8 w-8 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="text-center py-24 glass-dark rounded-3xl animate-fade-in-up border transition-all duration-500" style={{ animationDelay: '0.2s' }}>
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 dark:bg-black/50 border border-gray-200 dark:border-white/10 mb-6 animate-pulse-slow">
+                <svg className="h-8 w-8 text-indigo-500 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">No items found</h3>
-              <p className="text-lg text-gray-500 max-w-sm mx-auto">Try adjusting your search query or exploring a different category.</p>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-500">No items found</h3>
+              <p className="text-lg text-gray-600 dark:text-gray-500 max-w-sm mx-auto transition-colors duration-500">Try adjusting your search query or exploring a different category.</p>
               <button 
                 onClick={() => { setSearchQuery(""); setSelectedCategory("All"); }}
-                className="mt-8 inline-flex items-center px-6 py-3 border border-indigo-500/30 font-bold rounded-xl text-indigo-400 bg-indigo-500/10 hover:bg-indigo-500/20 hover:border-indigo-400 transition-all duration-300"
+                className="mt-8 inline-flex items-center px-6 py-3 border border-indigo-300 dark:border-indigo-500/30 font-bold rounded-xl text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10 hover:bg-indigo-100 dark:hover:bg-indigo-500/20 hover:border-indigo-400 transition-all duration-300"
                >
                 Clear all filters
               </button>

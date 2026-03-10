@@ -64,34 +64,34 @@ const ProductCard = ({ product, index }) => {
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
-        className={`group relative w-full h-full bg-[#0a0c10] rounded-3xl p-6 flex flex-col justify-between border border-white/5 transition-all duration-200 ease-out flex-1 preserve-3d ${getHoverBorderColor(product.category)}`}
+        className={`group relative w-full h-full bg-white dark:bg-[#0a0c10] rounded-3xl p-6 flex flex-col justify-between border border-gray-200 dark:border-white/5 transition-all duration-200 ease-out flex-1 preserve-3d ${getHoverBorderColor(product.category)} shadow-lg dark:shadow-none`}
         style={{
           transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) ${isHovered ? 'scale(1.03) translateZ(10px)' : 'scale(1) translateZ(0)'}`,
         }}
       >
-        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:via-white/30 transition-all duration-500" />
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-gray-300 dark:via-white/10 to-transparent group-hover:via-indigo-400 dark:group-hover:via-white/30 transition-all duration-500" />
         
         <div className="relative z-10 translate-z-10">
           <div className="flex flex-col gap-3 items-start mb-6">
             <span className={`inline-block px-3 py-1 rounded-md text-[11px] font-bold tracking-wide border ${getCategoryColorClass(product.category)}`}>
               {product.category}
             </span>
-            <h3 className="text-xl font-bold text-white leading-snug group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 transition-all duration-300">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-snug group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 dark:group-hover:from-white group-hover:to-teal-500 dark:group-hover:to-gray-400 transition-all duration-300">
               {product.name}
             </h3>
           </div>
         </div>
         
-        <div className="mt-auto pt-5 border-t border-white/5 relative z-10 flex items-center justify-between translate-z-10">
+        <div className="mt-auto pt-5 border-t border-gray-100 dark:border-white/5 relative z-10 flex items-center justify-between translate-z-10">
           <div>
-            <p className="text-2xl font-black text-white group-hover:scale-105 origin-left transition-transform duration-300">
-              <span className="text-sm font-medium text-gray-500 mr-1 relative bottom-[2px]">₹</span>
+            <p className="text-2xl font-black text-gray-900 dark:text-white group-hover:scale-105 origin-left transition-transform duration-300">
+              <span className="text-sm font-medium text-gray-400 dark:text-gray-500 mr-1 relative bottom-[2px]">₹</span>
               {product.price.toLocaleString('en-IN')}
             </p>
           </div>
           
-          <div className="w-10 h-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center group-hover:bg-white group-hover:border-white transition-all duration-300 shadow-lg">
-             <svg className="w-5 h-5 text-gray-400 group-hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="w-10 h-10 rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 flex items-center justify-center group-hover:bg-indigo-500 dark:group-hover:bg-white group-hover:border-indigo-500 dark:group-hover:border-white transition-all duration-300 shadow-sm dark:shadow-none">
+             <svg className="w-5 h-5 text-gray-400 group-hover:text-white dark:group-hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
             </svg>
           </div>
