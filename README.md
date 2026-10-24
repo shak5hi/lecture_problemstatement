@@ -1,16 +1,42 @@
-# React + Vite
+# Product Catalog with Interactive Particles
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive product catalogue in React with live search, category filters, a
+dark/light theme and an **interactive particle background** drawn on an HTML canvas.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-19-61dafb?style=flat-square&logo=react)
+![Vite](https://img.shields.io/badge/Vite-7-646cff?style=flat-square&logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-38bdf8?style=flat-square&logo=tailwindcss&logoColor=white)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- **Live search** that filters 35 products as you type
+- **Category filters**: Gaming, Audio, Workspace, Photography, Smart Home
+- **Dark and light mode** using Tailwind's class-based dark mode, with smooth transitions
+- **Particle field** in plain Canvas 2D (no libraries). Particles react to how fast
+  the mouse is moving and scatter around the cursor; their colours change with the theme
+- Glass-style product cards with custom Tailwind animations and keyframes
+- Prices formatted in INR
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Run it
 
-## Expanding the ESLint configuration
+```bash
+git clone https://github.com/shak5hi/lecture_problemstatement.git
+cd lecture_problemstatement
+npm install
+npm run dev      # http://localhost:5173
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Structure
+
+```
+src/
+├── App.jsx                Product data, search and filter state, theme toggle
+├── ProductCard.jsx        Card component
+├── ParticleBackground.jsx Canvas animation loop and mouse interaction
+└── index.css              Tailwind layers and the glass utility
+```
+
+## What I practised
+
+React state and derived (filtered) data, `useEffect` for DOM side effects,
+`requestAnimationFrame` loops with cleanup, and building a custom Tailwind theme.
